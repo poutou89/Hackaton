@@ -1,6 +1,6 @@
-<?php ob_start();
-include ('utilities.php')
-?>
+<?php ob_start() ?>
+<?php @include 'utilities.php' ?>
+<?php ?>
 
 <!DOCTYPE html>
 <html lang="fr">
