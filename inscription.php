@@ -39,9 +39,7 @@
                 'role'=>$role
             ]);
             header("Location:index.php");
-        } else {
-            header("Location: index.php");
-        }
+        } 
     ?>
     </form>
 </body>
