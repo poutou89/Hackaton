@@ -28,12 +28,10 @@
         <?php if (!empty($_POST['pseudo']) && !empty($_POST['mdp'])){
             $pseudo = htmlspecialchars($_POST['pseudo']);
             $mdp = htmlspecialchars(sha1(sha1($_POST['mdp']).'erqbf8295'));
-
-
             $role = 'joueur';
 
             $requestCreate = $bdd->prepare('INSERT INTO user(pseudo,mdp,role)
-                                    VALUES (:pseudo,:mdp,:role)');
+                                            VALUES (:pseudo,:mdp,:role)');
 
             $requestCreate->execute([
                 'pseudo'=>$pseudo,
@@ -41,9 +39,9 @@
                 'role'=>$role
             ]);
             header("Location:index.php");
-
+        } else {
+            header("Location: index.php");
         }
-        
     ?>
     </form>
 </body>
