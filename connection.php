@@ -1,4 +1,4 @@
-<?php ob_start();
+<?php session_start();
 include "utilities.php";
 
 if (!empty($_POST['pseudo']) && !empty($_POST['mdp'])) {

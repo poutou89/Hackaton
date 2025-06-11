@@ -1,9 +1,10 @@
 <?php session_start() ?>
-<?php @include 'utilities.php' ?>
+<?php include 'utilities.php' ?>
 <?php ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,5 +14,11 @@
 
 <body>
     <?php include('header.php'); ?>
+
+    <?php if (isset($_SESSION['id_user'])) {
+        echo '<h2>bienvenue ' . $_SESSION['pseudo'] . '</h2>';
+    }
+    ?>
 </body>
+
 </html>
