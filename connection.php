@@ -1,17 +1,19 @@
 <?php ob_start();
-include('utilities.php');
+include "utilities.php";
 
 if (!empty($_POST['pseudo']) && !empty($_POST['mdp'])) {
     $pseudo = htmlspecialchars($_POST['pseudo']);
-    $mdp = htmlspecialchars($_POST['mdp']);
+    $mdp = htmlspecialchars(sha1(sha1($_POST['mdp']) . 'erqbf8295'));
 
     $requestcreate = $bdd->prepare("SELECT id_user,pseudo,mdp,role 
                                     FROM user 
                                     WHERE pseudo = ?");
     $requestcreate->execute(array($pseudo));
     $data = $requestcreate->fetch();
-    if (password_verify($mdp, $data['mdp'])) {
-        $_SESSION['user'] = ['id_user' => $data['id_user'], 'pseudo' => $data['pseudo'], 'role' => $data['role']];
+    if ($data && $mdp === $data['mdp']) {
+        $_SESSION['pseudo'] = $data['pseudo'];
+        $_SESSION['id_user'] = $data['id_user'];
+        $_SESSION['role'] = $data['role'];
         header('location:index.php');
     } else {
         echo '<p class="error">Mot de passe ou nom d\'utilisateur incorrect<p>';
@@ -29,7 +31,17 @@ if (!empty($_POST['pseudo']) && !empty($_POST['mdp'])) {
 </head>
 
 <body>
-    <?php include('header.php'); ?>
+    <?php include "header.php"; ?>
+
+    <div class="container">
+        <form action="connection.php" method="post">
+            <label for="pseudo"> Pseudo: </label>
+            <input type="text" name="pseudo">
+            <label for="mdp">Mot de passe: </label>
+            <input type="password" name="mdp">
+            <button class="btn">Envoyer</button>
+        </form>
+    </div>
 </body>
 
 </html>
