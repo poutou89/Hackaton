@@ -9,7 +9,7 @@
             <ul class="menu">
                 <li><a href="index.php">Acceuil</a></li>
                 <li><a href="deconnection.php">Deconnection</a></li>
-                <li><a href="#"></a></li>
+                <li><a href="inscription.php">S'inscrire</a></li>
                 <li><a href="#"></a></li>
             </ul>
 
