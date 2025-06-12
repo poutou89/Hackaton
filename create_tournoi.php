@@ -1,43 +1,28 @@
-<?php session_start();
+<?php
 include "utilities.php";
 
-    $stmt = $bdd->query("SELECT id_user, pseudo FROM user");
-    $players = $stmt->fetchALL();
-
-   function generateMatches($players, $tournamentType) {
-    $matches = [];
-
-    if ($tournamentType === 'round-robin') {
-        for ($i = 0; $i < count($players); $i++) {
-            for ($j = $i + 1; $j < count($players); $j++) {
-                $matches[] = [$players[$i], $players[$j]];
-            }
-        }
-    } elseif ($tournamentType === 'knockout') {
-        shuffle($players);
-        for ($i = 0; $i < count($players); $i += 2) {
-            if (isset($players[$i + 1])) {
-                $matches[] = [$players[$i], $players[$i + 1]];
-            } else {
-                $matches[] = [$players[$i], ['id_user' => null, 'pseudo' => 'BYE']];
-            }
-        }
-    } else {
-        throw new Exception("Type de tournoi non pris en charge.");
-    }
-
-    return $matches;
+if (!isset($_POST['joueurs'])) {
+    echo "<form method='POST'>";
+    echo "<label>Nombre de joueurs : </label>";
+    echo "<input type='number' name='joueurs' min='2' required>";
+    echo "<input type='submit' value='Suivant'>";
+    echo "</form>";
+    exit;
 }
 
-// Exemple d'utilisation
-$tournamentType = 'knockout'; // ou 'knockout'
+$nombre = (int)$_POST['joueurs'];
 
-try {
-    $matches = generateMatches($players, $tournamentType);
-    foreach ($matches as $match) {
-        echo $match[0]['pseudo'] . ' vs ' . $match[1]['pseudo'] . PHP_EOL;
-    }
-} catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
+$stmt = $bdd->query("SELECT id_user, pseudo FROM user WHERE role = 'joueur'");
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+echo "<form method='POST' action='tournoi.php'>";
+echo "<input type='hidden' name='round' value='1'>";
+echo "<input type='hidden' name='nombre' value='$nombre'>";
+echo "<h3>Sélectionne $nombre joueurs :</h3>";
+
+foreach ($users as $user) {
+    echo "<input type='checkbox' name='players[]' value='{$user['id_user']}'> {$user['pseudo']}<br>";
 }
-?>
+
+echo "<br><input type='submit' value='Lancer le tournoi'>";
+echo "</form>";
