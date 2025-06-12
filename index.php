@@ -1,6 +1,9 @@
 <?php session_start() ?>
 <?php include 'utilities.php' ?>
-<?php ?>
+<?php 
+    $requestTournoi = $bdd->query('SELECT * FROM tournoi');
+    $Tournoi = $requestTournoi->fetchAll();
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,6 +22,14 @@
         echo '<h2>bienvenue ' . $_SESSION['pseudo'] . '</h2>';
     }
     ?>
+    <main>
+        <div class="container">
+            <h1>Historique des tournois :</h1>
+                <?php foreach ($Tournoi as $data): ?>
+                    <p><a href="classement.php?id=<?php echo $data['id_tournoi']?>"><?php echo $data['nom'] ?></a></p>
+                <?php endforeach ?>
+        </div>
+    </main>
 </body>
 
 </html>
