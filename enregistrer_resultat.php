@@ -2,6 +2,11 @@
 session_start();
 include "utilities.php";
 
+if (!isset($_SESSION['role']) !== 'admin') {
+    header('location: index.php');
+    exit;
+}
+
 $round = $_POST['round'];
 $next_round = $round + 1;
 

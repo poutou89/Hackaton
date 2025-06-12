@@ -1,6 +1,11 @@
 <?php
 include "utilities.php";
 
+if (!isset($_SESSION['role']) !== 'admin') {
+    header('location: index.php');
+    exit;
+}
+
 if (!isset($_POST['joueurs'])) {
     echo "<form method='POST'>";
     echo "<label>Nombre de joueurs : </label>";

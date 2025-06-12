@@ -16,7 +16,7 @@
             <ul class="burger-contenue">
                 <li><a href="index.php">Acceuil</a></li>
                 <li><a href="deconnection.php">Deconnection</a></li>
-                <li><a href="#"></a></li>
+                <li><a href="create_tournois">Création de tournois</a></li>
                 <li><a href="#"></a></li>
             </ul>
         <?php else: ?>

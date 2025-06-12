@@ -2,6 +2,11 @@
 session_start();
 include "utilities.php";
 
+if (!isset($_SESSION['role']) !== 'admin') {
+    header('location: index.php');
+    exit;
+}
+
 $round = $_POST['round'] ?? $_GET['round'] ?? 1;
 
 if ($round == 1 && isset($_POST['players'])) {
@@ -20,7 +25,8 @@ $stmt = $bdd->prepare("SELECT id_user, pseudo FROM user WHERE id_user IN ($in)")
 $stmt->execute($player_ids);
 $players = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-function generateMatches($players) {
+function generateMatches($players)
+{
     shuffle($players);
     $matches = [];
     for ($i = 0; $i < count($players); $i += 2) {
