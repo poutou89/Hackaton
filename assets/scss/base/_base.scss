@@ -1,0 +1,45 @@
+@use "../abstracts/variables" as variables;
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+h1 {
+    font-family: variables.$font-bold ;
+    font-size: 36px;
+    color: variables.$white;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 600;
+    color: variables.$primary;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: variables.$primary
+}
+
+p {
+    font-size: 16px;
+    color: variables.$p-body;
+}
+
+a {
+    text-decoration: none;
+    color: variables.$white;
+}
+
+a:hover {
+    color: variables.$color-btn;
+}
+
+li {
+    list-style: none;
+}

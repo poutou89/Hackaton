@@ -1,8 +1,8 @@
 <header>
     <div class="logo">
-        <img src="" alt="">
+        <img src="assets/img/tournois.png" alt="image de coupe avec texte tournois">
     </div>
-    <h1></h1>
+    <h1>tournoi</h1>
     <nav>
 
         <?php if (isset($_SESSION['id_user'])): ?>
