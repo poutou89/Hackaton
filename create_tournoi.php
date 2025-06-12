@@ -2,6 +2,10 @@
 session_start();
 include "utilities.php";
 
+if ($_SESSION['role'] !== 'admin') {
+    header('location: index.php');
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom = $_POST['nom'];
     $type = $_POST['type'];
@@ -30,4 +34,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: tournoi.php?id=$idTournoi&round=1");
     exit;
 }
-?>

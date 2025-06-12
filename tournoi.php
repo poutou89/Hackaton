@@ -1,6 +1,11 @@
 <?php
 include "utilities.php";
 
+if ($_SESSION['role'] !== 'admin') {
+    header('location: index.php');
+}
+
+
 $idTournoi = $_GET['id'] ?? null;
 $round = $_GET['round'] ?? 1;
 
@@ -27,10 +32,10 @@ if (!$matches) {
 
     <?php foreach ($matches as $match): ?>
         <div>
-            <?= $match['joueur1'] ?> 
+            <?= $match['joueur1'] ?>
             <input type="number" name="scores[<?= $match['id_match'] ?>][score1]" required>
-            vs 
-            <?= $match['joueur2'] ?> 
+            vs
+            <?= $match['joueur2'] ?>
             <input type="number" name="scores[<?= $match['id_match'] ?>][score2]" required>
 
             <input type="hidden" name="scores[<?= $match['id_match'] ?>][player1_id]" value="<?= $match['player1_id'] ?>">

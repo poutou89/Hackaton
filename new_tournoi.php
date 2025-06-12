@@ -2,6 +2,11 @@
 session_start();
 require_once "utilities.php"; // Connexion PDO
 
+if ($_SESSION['role'] !== 'admin') {
+    header('location: index.php');
+}
+
+
 // Récupérer les utilisateurs depuis la base de données
 $stmt = $bdd->query("SELECT id_user, pseudo FROM user");
 $joueurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -9,10 +14,12 @@ $joueurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Créer un nouveau tournoi</title>
 </head>
+
 <body>
     <h1>Créer un nouveau tournoi</h1>
 
@@ -36,4 +43,5 @@ $joueurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <input type="submit" value="Créer le tournoi">
     </form>
 </body>
+
 </html>

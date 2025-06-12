@@ -1,6 +1,10 @@
 <?php
 include "utilities.php";
 
+if ($_SESSION['role'] !== 'admin') {
+    header('location: index.php');
+}
+
 $idTournoi = $_POST['id_tournoi'];
 $round = $_POST['round'];
 $scores = $_POST['scores'];
@@ -43,7 +47,7 @@ if (count($nextRoundPlayers) >= 2) {
                             ");
     $stmt2->execute();
     $winner = $stmt2->fetch();
-    
-    echo "<h2>Le gagnant du tournoi est le joueur :" . $winner['pseudo'] ."</h2>";
+
+    echo "<h2>Le gagnant du tournoi est le joueur :" . $winner['pseudo'] . "</h2>";
 }
 exit;
