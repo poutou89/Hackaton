@@ -1,62 +1,49 @@
 <?php
-session_start();
 include "utilities.php";
 
-if (!isset($_SESSION['role']) !== 'admin') {
-    header('location: index.php');
-    exit;
-}
-
+$idTournoi = $_POST['id_tournoi'];
 $round = $_POST['round'];
-$next_round = $round + 1;
+$scores = $_POST['scores'];
 
-if (!isset($_SESSION['next_round_players'])) {
-    $_SESSION['next_round_players'] = [];
+$nextRoundPlayers = [];
+
+
+
+foreach ($scores as $id_match => $data) {
+    $score1 = (int)$data['score1'];
+    $score2 = (int)$data['score2'];
+    $p1 = $data['player1_id'];
+    $p2 = $data['player2_id'];
+
+    $gagnant = $score1 > $score2 ? $p1 : $p2;
+    $nextRoundPlayers[] = $gagnant;
+
+    $stmt = $bdd->prepare("UPDATE matchs SET score1=?, score2=?, gagnant_id=? WHERE id_match=?");
+    $stmt->execute([$score1, $score2, $gagnant, $id_match]);
 }
 
-if (!isset($_SESSION['match_count'])) {
-    $_SESSION['match_count'] = 0;
-}
+// Générer le prochain round si au moins 2 gagnants
+if (count($nextRoundPlayers) >= 2) {
+    $nextRound = $round + 1;
+    for ($i = 0; $i < count($nextRoundPlayers); $i += 2) {
+        $p1 = $nextRoundPlayers[$i];
+        $p2 = $nextRoundPlayers[$i + 1] ?? null;
 
-if (isset($_POST['auto_win'])) {
-    $_SESSION['next_round_players'][] = $_POST['winner_id'];
-} else {
-    $player1 = $_POST['player1_id'];
-    $player2 = $_POST['player2_id'];
-    $score1 = $_POST['score1'];
-    $score2 = $_POST['score2'];
-
-    $stmt = $bdd->prepare("INSERT INTO matchs (player1_id, player2_id, score1, score2, round) VALUES (?, ?, ?, ?, ?)");
-    $stmt->execute([$player1, $player2, $score1, $score2, $round]);
-
-    $winner_id = ($score1 > $score2) ? $player1 : $player2;
-    $_SESSION['next_round_players'][] = $winner_id;
-}
-
-$_SESSION['match_count']++;
-if (!isset($_SESSION['tournament_players']) || !is_array($_SESSION['tournament_players'])) {
-    echo "Erreur : liste des joueurs non trouvée.";
-    session_destroy();
-    exit;
-}
-
-if (count($_SESSION['next_round_players']) >= ceil(count($_SESSION['tournament_players']) / 2)) {
-    $_SESSION['tournament_players'] = $_SESSION['next_round_players'];
-    unset($_SESSION['next_round_players']);
-    $_SESSION['match_count'] = 0;
-
-    if (count($_SESSION['tournament_players']) == 1) {
-        $stmt = $bdd->prepare("SELECT pseudo FROM user WHERE id_user = ?");
-        $stmt->execute([$_SESSION['tournament_players'][0]]);
-        $winner = $stmt->fetchColumn();
-        echo "<h1>🏆 Le gagnant est : $winner</h1>";
-        session_destroy();
-        exit;
+        $stmt = $bdd->prepare("INSERT INTO matchs (id_tournoi, round, player1_id, player2_id) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$idTournoi, $nextRound, $p1, $p2]);
     }
 
-    header("Location: tournoi.php?round=$next_round");
-    exit;
-}
+    header("Location: tournoi.php?id=$idTournoi&round=$nextRound");
+} else {
 
-header("Location: tournoi.php?round=$round");
+    $stmt2 = $bdd->prepare("
+    SELECT *, matchs.gagnant_id
+    FROM user
+    INNER JOIN matchs ON user.id_user = matchs.gagnant_id
+                            ");
+    $stmt2->execute();
+    $winner = $stmt2->fetch();
+    
+    echo "<h2>Le gagnant du tournoi est le joueur :" . $winner['pseudo'] ."</h2>";
+}
 exit;

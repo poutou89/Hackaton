@@ -1,60 +1,42 @@
 <?php
-session_start();
 include "utilities.php";
 
-if (!isset($_SESSION['role']) !== 'admin') {
-    header('location: index.php');
+$idTournoi = $_GET['id'] ?? null;
+$round = $_GET['round'] ?? 1;
+
+$stmt = $bdd->prepare("
+    SELECT m.*, u1.pseudo AS joueur1, u2.pseudo AS joueur2 
+    FROM matchs m
+    LEFT JOIN user u1 ON m.player1_id = u1.id_user
+    LEFT JOIN user u2 ON m.player2_id = u2.id_user
+    WHERE m.id_tournoi = ? AND m.round = ?
+");
+$stmt->execute([$idTournoi, $round]);
+$matches = $stmt->fetchAll();
+
+if (!$matches) {
+    echo "<p>Aucun match pour ce round.</p>";
     exit;
 }
+?>
 
-$round = $_POST['round'] ?? $_GET['round'] ?? 1;
+<h2>Round <?= $round ?></h2>
+<form action="enregistrer_resultat.php" method="post">
+    <input type="hidden" name="id_tournoi" value="<?= $idTournoi ?>">
+    <input type="hidden" name="round" value="<?= $round ?>">
 
-if ($round == 1 && isset($_POST['players'])) {
-    $_SESSION['tournament_players'] = $_POST['players'];
-}
+    <?php foreach ($matches as $match): ?>
+        <div>
+            <?= $match['joueur1'] ?> 
+            <input type="number" name="scores[<?= $match['id_match'] ?>][score1]" required>
+            vs 
+            <?= $match['joueur2'] ?> 
+            <input type="number" name="scores[<?= $match['id_match'] ?>][score2]" required>
 
-$player_ids = $_SESSION['tournament_players'] ?? [];
+            <input type="hidden" name="scores[<?= $match['id_match'] ?>][player1_id]" value="<?= $match['player1_id'] ?>">
+            <input type="hidden" name="scores[<?= $match['id_match'] ?>][player2_id]" value="<?= $match['player2_id'] ?>">
+        </div>
+    <?php endforeach; ?>
 
-if (empty($player_ids)) {
-    echo "Aucun joueur sélectionné.";
-    exit;
-}
-
-$in = implode(',', array_fill(0, count($player_ids), '?'));
-$stmt = $bdd->prepare("SELECT id_user, pseudo FROM user WHERE id_user IN ($in)");
-$stmt->execute($player_ids);
-$players = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-function generateMatches($players)
-{
-    shuffle($players);
-    $matches = [];
-    for ($i = 0; $i < count($players); $i += 2) {
-        $p2 = $players[$i + 1] ?? ['id_user' => null, 'pseudo' => 'BYE'];
-        $matches[] = [$players[$i], $p2];
-    }
-    return $matches;
-}
-
-echo "<h2>Tour $round</h2>";
-$matches = generateMatches($players);
-
-foreach ($matches as $i => $match) {
-    echo "<form method='POST' action='enregistrer_resultat.php'>";
-    echo "{$match[0]['pseudo']} vs {$match[1]['pseudo']}<br>";
-
-    if ($match[1]['pseudo'] === 'BYE') {
-        echo "<input type='hidden' name='auto_win' value='1'>";
-        echo "<input type='hidden' name='winner_id' value='{$match[0]['id_user']}'>";
-    } else {
-        echo "<input type='number' name='score1' required> - ";
-        echo "<input type='number' name='score2' required><br>";
-        echo "<input type='hidden' name='score_form' value='1'>";
-    }
-
-    echo "<input type='hidden' name='player1_id' value='{$match[0]['id_user']}'>";
-    echo "<input type='hidden' name='player2_id' value='{$match[1]['id_user']}'>";
-    echo "<input type='hidden' name='round' value='$round'>";
-    echo "<input type='submit' value='Valider'>";
-    echo "</form><hr>";
-}
+    <button type="submit">Valider tous les scores</button>
+</form>
