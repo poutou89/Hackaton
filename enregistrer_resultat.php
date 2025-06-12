@@ -41,7 +41,7 @@ if (count($_SESSION['next_round_players']) >= ceil(count($_SESSION['tournament_p
     $_SESSION['match_count'] = 0;
 
     if (count($_SESSION['tournament_players']) == 1) {
-        $stmt = $pdo->prepare("SELECT pseudo FROM user WHERE id_user = ?");
+        $stmt = $bdd->prepare("SELECT pseudo FROM user WHERE id_user = ?");
         $stmt->execute([$_SESSION['tournament_players'][0]]);
         $winner = $stmt->fetchColumn();
         echo "<h1>🏆 Le gagnant est : $winner</h1>";
