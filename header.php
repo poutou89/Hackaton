@@ -9,31 +9,26 @@
             <ul class="menu">
                 <li><a href="index.php">Acceuil</a></li>
                 <li><a href="deconnection.php">Deconnection</a></li>
-                <li><a href="inscription.php">S'inscrire</a></li>
-                <li><a href="#"></a></li>
+                <li><a href="new_tournoi.php">Création de tournois</a></li>
             </ul>
 
             <ul class="burger-contenue">
                 <li><a href="index.php">Acceuil</a></li>
                 <li><a href="deconnection.php">Deconnection</a></li>
                 <li><a href="new_tournoi.php">Création de tournois</a></li>
-                <li><a href="#"></a></li>
+
             </ul>
         <?php else: ?>
             <ul class="menu">
                 <li><a href="index.php">Acceuil</a></li>
                 <li><a href="Connection.php">Connection</a></li>
                 <li><a href="inscription.php">Inscription</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
             </ul>
 
             <ul class="burger-contenue">
                 <li><a href="index.php">Acceuil</a></li>
                 <li><a href="Connection.php">Connection</a></li>
                 <li><a href="inscription.php">Inscription</a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
             </ul>
             </div>
         <?php endif ?>
