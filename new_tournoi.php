@@ -2,7 +2,7 @@
 session_start();
 require_once "utilities.php"; // Connexion PDO
 
-if ($_SESSION['role'] !== 'admin') {
+if ($_SESSION['role'] != 'admin') {
     header('location: index.php');
 }
 

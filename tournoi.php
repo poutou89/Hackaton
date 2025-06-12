@@ -1,7 +1,8 @@
 <?php
+session_start();
 include "utilities.php";
 
-if ($_SESSION['role'] !== 'admin') {
+if ($_SESSION['role'] != 'admin') {
     header('location: index.php');
 }
 

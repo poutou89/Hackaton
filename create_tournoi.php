@@ -31,6 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$idTournoi, $round, $p1, $p2]);
     }
 
-    header("Location: tournoi.php?id=$idTournoi&round=1");
-    exit;
+    header("Location: tournoi.php?id=$idTournoi&$round");
+
 }
