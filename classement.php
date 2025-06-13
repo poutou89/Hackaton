@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "utilities.php";
+include "header.php";
 
 $id_Tournoi = $_GET['id'];
 
@@ -34,10 +35,13 @@ $gagnantFinal = end($matchs)['gagnant'];
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Tournoi #<?= htmlspecialchars($id_Tournoi) ?></title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
     <?php include('header.php'); ?>
 
@@ -50,11 +54,11 @@ $gagnantFinal = end($matchs)['gagnant'];
                 <ul>
                     <?php foreach ($matchsDuRound as $match): ?>
                         <li>
-                            <?= htmlspecialchars($match['joueur1'] ?? 'Inconnu') ?> 
-                            (<?= $match['score1'] ?>) 
-                            vs 
-                            <?= htmlspecialchars($match['joueur2'] ?? 'Inconnu') ?> 
-                            (<?= $match['score2'] ?>) 
+                            <?= htmlspecialchars($match['joueur1'] ?? 'Inconnu') ?>
+                            (<?= $match['score1'] ?>)
+                            vs
+                            <?= htmlspecialchars($match['joueur2'] ?? 'Inconnu') ?>
+                            (<?= $match['score2'] ?>)
                             → Gagnant : <strong><?= htmlspecialchars($match['gagnant'] ?? 'Indéfini') ?></strong>
                         </li>
                     <?php endforeach; ?>
@@ -68,4 +72,5 @@ $gagnantFinal = end($matchs)['gagnant'];
         </p>
     </main>
 </body>
+
 </html>
