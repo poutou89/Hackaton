@@ -48,7 +48,7 @@ $gagnantFinal = end($matchs)['gagnant'];
         <h1>Tournoi n°<?= htmlspecialchars($id_Tournoi) ?></h1>
 
         <?php foreach ($rounds as $roundNumber => $matchsDuRound): ?>
-            <section>
+            <section id="historique">
                 <h2>Round <?= $roundNumber ?></h2>
                 <ul>
                     <?php foreach ($matchsDuRound as $match): ?>

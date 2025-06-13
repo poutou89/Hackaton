@@ -37,26 +37,29 @@ if (!$matches) {
 
 <body>
     <? include "header.php"; ?>
+<main>
+<div class="container">
+    <h2>Round <?= $round ?></h2>
+    <form action="enregistrer_resultat.php" method="post">
+        <input type="hidden" name="id_tournoi" value="<?= $idTournoi ?>">
+        <input type="hidden" name="round" value="<?= $round ?>">
+
+        <?php foreach ($matches as $match): ?>
+            <div>
+                <?= $match['joueur1'] ?>
+                <input type="number" name="scores[<?= $match['id_match'] ?>][score1]" required>
+                vs
+                <?= $match['joueur2'] ?>
+                <input type="number" name="scores[<?= $match['id_match'] ?>][score2]" required>
+
+                <input type="hidden" name="scores[<?= $match['id_match'] ?>][player1_id]" value="<?= $match['player1_id'] ?>">
+                <input type="hidden" name="scores[<?= $match['id_match'] ?>][player2_id]" value="<?= $match['player2_id'] ?>">
+            </div>
+        <?php endforeach; ?>
+
+        <button type="submit">Valider tous les scores</button>
+    </form>
+</div>
+</main>
 </body>
-
 </html>
-<h2>Round <?= $round ?></h2>
-<form action="enregistrer_resultat.php" method="post">
-    <input type="hidden" name="id_tournoi" value="<?= $idTournoi ?>">
-    <input type="hidden" name="round" value="<?= $round ?>">
-
-    <?php foreach ($matches as $match): ?>
-        <div>
-            <?= $match['joueur1'] ?>
-            <input type="number" name="scores[<?= $match['id_match'] ?>][score1]" required>
-            vs
-            <?= $match['joueur2'] ?>
-            <input type="number" name="scores[<?= $match['id_match'] ?>][score2]" required>
-
-            <input type="hidden" name="scores[<?= $match['id_match'] ?>][player1_id]" value="<?= $match['player1_id'] ?>">
-            <input type="hidden" name="scores[<?= $match['id_match'] ?>][player2_id]" value="<?= $match['player2_id'] ?>">
-        </div>
-    <?php endforeach; ?>
-
-    <button type="submit">Valider tous les scores</button>
-</form>

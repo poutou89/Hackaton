@@ -1,0 +1,13 @@
+@use "../abstracts/variables" as variables;
+
+body {
+    main {
+        #historique {
+            ul {
+                li {
+                    color: variables.$bordeaux;
+                }
+            }
+        }
+    }
+}

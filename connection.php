@@ -34,7 +34,7 @@ if (!empty($_POST['pseudo']) && !empty($_POST['mdp'])) {
 
 <body>
     <?php include "header.php"; ?>
-
+    <main>
     <div class="container">
         <form action="connection.php" method="post">
             <label for="pseudo"> Pseudo: </label>
@@ -44,6 +44,7 @@ if (!empty($_POST['pseudo']) && !empty($_POST['mdp'])) {
             <button class="btn">Envoyer</button>
         </form>
     </div>
+    </main>
 </body>
 
 </html>
