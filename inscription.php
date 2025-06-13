@@ -26,7 +26,7 @@ include "utilities.php";
         <form action="inscription.php" method="post" required enctype="multipart/form-data">
             <input type="text" name="pseudo" placeholder="Pseudo" required>
             <input type="text" name="mdp" placeholder="Mot de passe" required>
-            <button>Valider mon inscription</button>
+            <button class="btn">Valider mon inscription</button>
     </div>
 
     <?php if (!empty($_POST['pseudo']) && !empty($_POST['mdp'])) {

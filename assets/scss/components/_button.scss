@@ -1,0 +1,15 @@
+@use "../abstracts/variables" as variables;
+
+.btn {
+    background-color: variables.$color-btn;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    font-size: 20px;
+    color: variables.$bordeaux;
+    border: none;
+    border-radius: 0.8rem 0 0.8rem 0;
+}
+
+.btn:hover {
+    background-color: variables.$color-hover;
+}

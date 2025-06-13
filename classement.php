@@ -1,7 +1,6 @@
 <?php
 session_start();
 include "utilities.php";
-include "header.php";
 
 $id_Tournoi = $_GET['id'];
 
