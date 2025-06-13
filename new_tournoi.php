@@ -38,8 +38,9 @@ $joueurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <label>Choisissez les joueurs :</label><br>
             <?php foreach ($joueurs as $joueur): ?>
+                <div class="container list">
                 <input type="checkbox" name="joueurs[]" value="<?= $joueur['id_user'] ?>">
-                <?= htmlspecialchars($joueur['pseudo']) ?><br>
+                <?= htmlspecialchars($joueur['pseudo']) ?></div><br>
             <?php endforeach; ?>
             <br>
 

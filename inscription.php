@@ -17,6 +17,7 @@ include "utilities.php";
     <?php
     include "header.php";
     ?>
+    <main>
     <div class="container">
         <a href="index.php">Retour à la page d'accueil</a>
         <h1 class="center">INSCRIPTION</h1>
@@ -46,6 +47,7 @@ include "utilities.php";
     }
     ?>
     </form>
+</main>
 </body>
 
 </html>

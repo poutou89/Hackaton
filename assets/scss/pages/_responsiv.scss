@@ -1,6 +1,15 @@
 @use "../abstracts/variables" as variables;
 @media screen and (max-width: 1024px) {
 
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  h3 {
+    font-size:20px;
+  }
     body {
         header {
             nav {
@@ -29,7 +38,7 @@
         flex-direction: column;
         background-color: variables.$primary;
         position: absolute;
-        top: 110px;
+        top: 100px;
         right: 5%;
         padding: 1rem;
         border-radius: 8px;
