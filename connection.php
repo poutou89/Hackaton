@@ -1,6 +1,7 @@
 <?php session_start();
 include "utilities.php";
 
+
 if (!empty($_POST['pseudo']) && !empty($_POST['mdp'])) {
     $pseudo = htmlspecialchars($_POST['pseudo']);
     $mdp = htmlspecialchars(sha1(sha1($_POST['mdp']) . 'erqbf8295'));
@@ -28,6 +29,7 @@ if (!empty($_POST['pseudo']) && !empty($_POST['mdp'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>

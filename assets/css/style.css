@@ -33,7 +33,7 @@ img {
 h1 {
   font-family: "RobotoBold";
   font-size: 36px;
-  color: white;
+  color: #6D071A;
   text-transform: uppercase;
 }
 
@@ -56,7 +56,7 @@ p {
 
 a {
   text-decoration: none;
-  color: white;
+  color: #6D071A;
 }
 
 a:hover {
