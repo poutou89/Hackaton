@@ -18,12 +18,13 @@
 <body>
     <?php include('header.php'); ?>
 
-    <?php if (isset($_SESSION['id_user'])) {
-        echo '<h2>bienvenue ' . $_SESSION['pseudo'] . '</h2>';
-    }
-    ?>
+    
     <main>
         <div class="container">
+            <?php if (isset($_SESSION['id_user'])) {
+            echo '<h2>bienvenue ' . $_SESSION['pseudo'] . '</h2>';
+            }
+            ?>
             <h1>Historique des tournois :</h1>
                 <?php foreach ($Tournoi as $data): ?>
                     <p><a href="classement.php?id=<?php echo $data['id_tournoi']?>"><?php echo $data['nom'] ?></a></p>

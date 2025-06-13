@@ -1,0 +1,51 @@
+@use "../abstracts/variables" as variables;
+@media screen and (max-width: 1024px) {
+
+    body {
+        header {
+            nav {
+      ul {
+        display: none;
+
+      }
+    }
+      .menu {
+        display: block !important;
+      }
+      
+      button#burger {
+        display: block !important;
+        background: transparent;
+        border: none;
+        z-index: 1000;
+      }
+      
+      button#burger img {
+        width: 24px;
+        height: 24px;
+      }
+      #navLinks {
+        display: none;
+        flex-direction: column;
+        background-color: variables.$primary;
+        position: absolute;
+        top: 110px;
+        right: 5%;
+        padding: 1rem;
+        border-radius: 8px;
+        z-index: 1000;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+         
+        &.active {
+            display: flex;
+            gap: 2vh;
+            width: 20vh;
+            box-shadow: 4px 6px 6px black;
+        }
+      }
+    }
+  
+    }
+}
+
