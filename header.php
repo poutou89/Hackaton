@@ -6,32 +6,24 @@
     <nav>
 
         <?php if (isset($_SESSION['id_user'])): ?>
-            <ul class="menu">
-                <li><a href="index.php">Acceuil</a></li>
-                <li><a href="deconnection.php">Deconnection</a></li>
+            <ul class="" id="navLinks">
+                <li><a href="index.php">Accueil</a></li>
+                <li><a href="deconnection.php">Deconnexion</a></li>
                 <li><a href="new_tournoi.php">Création de tournois</a></li>
-            </ul>
-
-            <ul class="burger-contenue">
-                <li><a href="index.php">Acceuil</a></li>
-                <li><a href="deconnection.php">Deconnection</a></li>
-                <li><a href="new_tournoi.php">Création de tournois</a></li>
-
             </ul>
         <?php else: ?>
-            <ul class="menu">
-                <li><a href="index.php">Acceuil</a></li>
-                <li><a href="Connection.php">Connection</a></li>
-                <li><a href="inscription.php">Inscription</a></li>
-            </ul>
-
-            <ul class="burger-contenue">
-                <li><a href="index.php">Acceuil</a></li>
-                <li><a href="Connection.php">Connection</a></li>
+            <ul class="" id="navLinks">
+                <li><a href="index.php">Accueil</a></li>
+                <li><a href="Connection.php">Connexion</a></li>
                 <li><a href="inscription.php">Inscription</a></li>
             </ul>
             </div>
         <?php endif ?>
-
     </nav>
+    <div class="menu">
+        <button id="burger" class="menu" aria-label="Ouvrir le menu">
+            <img src="assets/img/bars-solid.svg" alt="menu">
+        </button>
+    </div>
+    <script src="script.js"></script>
 </header>
