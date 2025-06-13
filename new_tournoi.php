@@ -24,7 +24,7 @@ $joueurs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <? include "header.php"; ?>
     <div class="container">
-        <h1>Créer un nouveau tournoi</h1>
+        <h1 class="center">Créer un nouveau tournoi</h1>
 
         <form action="create_tournoi.php" method="post">
             <label for="nom">Nom du tournoi :</label><br>

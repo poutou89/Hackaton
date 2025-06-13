@@ -19,7 +19,7 @@ include "utilities.php";
     ?>
     <div class="container">
         <a href="index.php">Retour à la page d'accueil</a>
-        <h1>INSCRIPTION</h1>
+        <h1 class="center">INSCRIPTION</h1>
     </div>
 
     <div class="container">

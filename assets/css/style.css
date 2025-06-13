@@ -46,6 +46,10 @@ h1 {
   text-transform: uppercase;
 }
 
+.center {
+  text-align: center;
+}
+
 h2 {
   font-size: 30px;
   font-weight: 600;
@@ -112,7 +116,7 @@ form {
   margin: 1rem 0;
   padding: 1rem 0;
   border-radius: 0.8rem;
-  background-color: rgb(196, 194, 194);
+  background-color: rgb(172, 169, 169);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -172,6 +176,9 @@ body {
     width: 20vh;
     box-shadow: 4px 6px 6px black;
   }
+}
+body main .container .bnjr {
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

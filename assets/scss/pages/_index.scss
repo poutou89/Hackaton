@@ -1,1 +1,11 @@
 @use "../abstracts/variables" as variables;
+
+body {
+    main {
+        .container {
+            .bnjr {
+                text-align: center;
+            }
+        }
+    }
+}

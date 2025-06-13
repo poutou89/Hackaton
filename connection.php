@@ -34,7 +34,7 @@ if (!empty($_POST['pseudo']) && !empty($_POST['mdp'])) {
 
 <body>
     <?php include "header.php"; ?>
-
+    <h1 class="center">connection</h1>
     <div class="container">
         <form action="connection.php" method="post">
             <label for="pseudo"> Pseudo: </label>

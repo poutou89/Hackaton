@@ -1,8 +1,8 @@
 <?php session_start() ?>
 <?php include 'utilities.php' ?>
-<?php 
-    $requestTournoi = $bdd->query('SELECT * FROM tournoi');
-    $Tournoi = $requestTournoi->fetchAll();
+<?php
+$requestTournoi = $bdd->query('SELECT * FROM tournoi');
+$Tournoi = $requestTournoi->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -18,17 +18,17 @@
 <body>
     <?php include('header.php'); ?>
 
-    
+
     <main>
         <div class="container">
             <?php if (isset($_SESSION['id_user'])) {
-            echo '<h2>bienvenue ' . $_SESSION['pseudo'] . '</h2>';
+                echo '<h2 class="bnjr" >bienvenue ' . $_SESSION['pseudo'] . '</h2>';
             }
             ?>
             <h1>Historique des tournois :</h1>
-                <?php foreach ($Tournoi as $data): ?>
-                    <p><a href="classement.php?id=<?php echo $data['id_tournoi']?>"><?php echo $data['nom'] ?></a></p>
-                <?php endforeach ?>
+            <?php foreach ($Tournoi as $data): ?>
+                <p><a href="classement.php?id=<?php echo $data['id_tournoi'] ?>"><?php echo $data['nom'] ?></a></p>
+            <?php endforeach ?>
         </div>
     </main>
 </body>
