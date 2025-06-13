@@ -1,17 +1,204 @@
-/* Error: expected "{".
- *    ,
- * 14 | @import 'pages/index';
- *    |                      ^
- *    '
- *   assets\scss\style.scss 14:22  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
+body header {
+  background-color: #1E3A8A;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: expected \"{\".\a    \2577 \a 14 \2502  @import 'pages/index';\d\a    \2502                       ^\a    \2575 \a   assets\\scss\\style.scss 14:22  root stylesheet";
+  box-shadow: 2px 2px 2px black;
 }
+body header .logo {
+  width: 5rem;
+}
+body header .logo img {
+  border-radius: 50%;
+}
+body header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+}
+body header nav ul {
+  display: flex;
+  gap: 1rem;
+}
+body header .menu {
+  display: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+body {
+  font-family: "RobotoRegular";
+  margin: 0;
+}
+
+h1 {
+  font-family: "RobotoBold";
+  font-size: 36px;
+  color: orange;
+  text-transform: uppercase;
+}
+
+.center {
+  text-align: center;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 600;
+  color: orange;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: orange;
+}
+
+p {
+  font-size: 16px;
+  color: orange;
+}
+
+a {
+  text-decoration: none;
+  color: orange;
+}
+
+a:hover {
+  color: #10b981;
+}
+
+li {
+  list-style: none;
+}
+
+form {
+  color: orange;
+}
+
+@font-face {
+  font-family: "RobotoRegular";
+  src: url(../fonts/Roboto-Regular.ttf);
+}
+@font-face {
+  font-family: "RobotoBold";
+  src: url(../fonts/Roboto-Bold.ttf);
+}
+.btn {
+  background-color: #10b981;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  font-size: 20px;
+  color: orange;
+  border: none;
+  border-radius: 0.8rem 0 0.8rem 0;
+}
+
+.btn:hover {
+  background-color: #047857;
+}
+
+.container {
+  width: 80%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0;
+}
+.container form {
+  margin: 1rem 0;
+  padding: 1rem 0;
+  border-radius: 0.8rem;
+  background-color: rgb(172, 169, 169);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+.container form input {
+  border-radius: 0.8rem;
+  border: solid 1px black;
+}
+.container form input.btn {
+  border: 0;
+  border-radius: 0.8rem 0 0.8rem 0;
+}
+.container form .list {
+  text-align: center;
+}
+
+body {
+  background-image: url(../img/fond.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+main {
+  height: 100vh;
+}
+
+@media screen and (max-width: 1024px) {
+  h1 {
+    font-size: 28px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  body header nav ul {
+    display: none;
+  }
+  body header .menu {
+    display: block !important;
+  }
+  body header button#burger {
+    display: block !important;
+    background: transparent;
+    border: none;
+    z-index: 1000;
+  }
+  body header button#burger img {
+    width: 24px;
+    height: 24px;
+  }
+  body header #navLinks {
+    display: none;
+    flex-direction: column;
+    background-color: #1E3A8A;
+    position: absolute;
+    top: 100px;
+    right: 5%;
+    padding: 1rem;
+    border-radius: 8px;
+    z-index: 1000;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+  body header #navLinks.active {
+    display: flex;
+    gap: 2vh;
+    width: 20vh;
+    box-shadow: 4px 6px 6px black;
+  }
+}
+body main .container .bnjr {
+  text-align: center;
+}
+
+body main #historique ul li {
+  color: orange;
+}
+
+/*# sourceMappingURL=style.css.map */
